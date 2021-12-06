@@ -26,7 +26,7 @@ class SearchViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail" {
-            let detailVC = segue.destination as! DetailViewController
+            guard let detailVC = segue.destination as? DetailViewController else { return }
             detailVC.searchVC = self
         }
     }
