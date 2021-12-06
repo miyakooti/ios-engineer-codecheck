@@ -14,19 +14,19 @@ class SearchViewController: UITableViewController {
     
     var repositories: [[String: Any]] = []
     var task: URLSessionTask?
-    var searchText: String!
-    var url: String!
-    var index: Int!
+    var searchText = ""
+    var urlString = ""
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.text = "GitHubのリポジトリを検索できるよー"
+        searchBar.text = "ios-engineer-codecheck"
         searchBar.delegate = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail" {
-            let detailVC = segue.destination as! DetailViewController
+            guard let detailVC = segue.destination as? DetailViewController else { return }
             detailVC.searchVC = self
         }
     }
@@ -65,12 +65,16 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchText = searchBar.text!
-        guard searchText.count != 0 else { return }
+        
+        guard searchBar.text != "", let text = searchBar.text else { return }
+        searchText = text
+        urlString = "https://api.github.com/search/repositories?q=\(searchText)"
+        
+        guard let url = URL(string: urlString) else { return }
 
-        url = "https://api.github.com/search/repositories?q=\(searchText!)"
-        task = URLSession.shared.dataTask(with: URL(string: url)!) { (data, res, err) in
-            guard let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any],
+        task = URLSession.shared.dataTask(with: url) { (data, res, err) in
+            guard let data = data,
+                  let obj = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let items = obj["items"] as? [[String: Any]] else { return }
             self.repositories = items
             DispatchQueue.main.async {

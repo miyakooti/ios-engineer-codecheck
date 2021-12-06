@@ -18,13 +18,18 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!
     
-    var searchVC: SearchViewController!
+    var searchVC: SearchViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareViews()
+    
+    }
+    
+    func prepareViews() {
+        guard let searchVC = searchVC, let index = searchVC.index else { return }
         
-        let repository = searchVC.repositories[searchVC.index]
-        
+        let repository = searchVC.repositories[index]
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         stargazersLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
         wachersLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
@@ -34,7 +39,9 @@ class DetailViewController: UIViewController {
     }
     
     func getImage() {
-        let repository = searchVC.repositories[searchVC.index]
+        guard let searchVC = searchVC, let index = searchVC.index else { return }
+
+        let repository = searchVC.repositories[index]
         
         titleLabel.text = repository["full_name"] as? String
         guard let owner = repository["owner"] as? [String: Any],
