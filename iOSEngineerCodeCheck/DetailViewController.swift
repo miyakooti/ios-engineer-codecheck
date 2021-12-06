@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var issuesLabel: UILabel!
     
     var searchVC: SearchViewController!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
