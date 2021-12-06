@@ -31,14 +31,12 @@ class DetailViewController: UIViewController {
         forksLabel.text = "\(repository["forks_count"] as? Int ?? 0) forks"
         issuesLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
         getImage()
-        
     }
     
     func getImage() {
-        
         let repository = searchVC.repositories[searchVC.index]
-        titleLabel.text = repository["full_name"] as? String
         
+        titleLabel.text = repository["full_name"] as? String
         guard let owner = repository["owner"] as? [String: Any],
               let imageURL = owner["avatar_url"] as? String else { return }
         
