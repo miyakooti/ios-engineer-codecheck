@@ -15,8 +15,8 @@ class SearchViewController: UITableViewController {
     var repositories: [[String: Any]] = []
     var task: URLSessionTask?
     var searchText = ""
-    var urlString: String!
-    var index: Int!
+    var urlString = ""
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
