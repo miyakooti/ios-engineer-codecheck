@@ -72,13 +72,13 @@ extension SearchViewController: UISearchBarDelegate {
         
         guard let url = URL(string: urlString) else { return }
 
-        task = URLSession.shared.dataTask(with: url) { (data, res, err) in
+        task = URLSession.shared.dataTask(with: url) { [weak self] (data, res, err) in
             guard let data = data,
                   let obj = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let items = obj["items"] as? [[String: Any]] else { return }
-            self.repositories = items
+            self?.repositories = items
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
 
         }
