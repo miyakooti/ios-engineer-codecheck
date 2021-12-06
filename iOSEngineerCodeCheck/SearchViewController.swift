@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     var repositories: [[String: Any]]=[]
@@ -39,22 +39,21 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchText = searchBar.text!
+        guard searchText.count != 0 else {return}
         
-        if searchText.count != 0 {
-            url = "https://api.github.com/search/repositories?q=\(searchText!)"
-            task = URLSession.shared.dataTask(with: URL(string: url)!) { (data, res, err) in
-                if let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any] {
-                    if let items = obj["items"] as? [[String: Any]] {
-                    self.repositories = items
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
+        url = "https://api.github.com/search/repositories?q=\(searchText!)"
+        task = URLSession.shared.dataTask(with: URL(string: url)!) { (data, res, err) in
+            guard let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any],
+                  let items = obj["items"] as? [[String: Any]] else {return}
+            self.repositories = items
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
+            
+        }
         // これ呼ばなきゃリストが更新されません
         task?.resume()
-        }
+        
         
     }
     

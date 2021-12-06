@@ -11,11 +11,8 @@ import UIKit
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var languageLabel: UILabel!
-    
     @IBOutlet weak var stargazersLabel: UILabel!
     @IBOutlet weak var wachersLabel: UILabel!
     @IBOutlet weak var forksLabel: UILabel!
@@ -40,19 +37,17 @@ class DetailViewController: UIViewController {
     func getImage(){
         
         let repository = searchVC.repositories[searchVC.index]
-        
         titleLabel.text = repository["full_name"] as? String
         
-        if let owner = repository["owner"] as? [String: Any] {
-            if let imageURL = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: imageURL)!) { (data, res, err) in
-                    let image = UIImage(data: data!)!
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
-                    }
-                }.resume()
+        guard let owner = repository["owner"] as? [String: Any],
+              let imageURL = owner["avatar_url"] as? String else {return}
+        
+        URLSession.shared.dataTask(with: URL(string: imageURL)!) { (data, res, err) in
+            let image = UIImage(data: data!)!
+            DispatchQueue.main.async {
+                self.imageView.image = image
             }
-        }
+        }.resume()
         
     }
     
