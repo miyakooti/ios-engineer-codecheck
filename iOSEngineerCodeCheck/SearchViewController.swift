@@ -12,7 +12,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var repositories: [[String: Any]]=[]
+    var repositories: [[String: Any]] = []
     
     var task: URLSessionTask?
     var searchText: String!
@@ -37,12 +37,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchText = searchBar.text!
-        guard searchText.count != 0 else {return}
+        guard searchText.count != 0 else { return }
         
         url = "https://api.github.com/search/repositories?q=\(searchText!)"
         task = URLSession.shared.dataTask(with: URL(string: url)!) { (data, res, err) in
             guard let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any],
-                  let items = obj["items"] as? [[String: Any]] else {return}
+                  let items = obj["items"] as? [[String: Any]] else { return }
             self.repositories = items
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -56,7 +56,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "Detail"{
+        if segue.identifier == "Detail" {
             let detailVC = segue.destination as! DetailViewController
             detailVC.searchVC = self
         }
