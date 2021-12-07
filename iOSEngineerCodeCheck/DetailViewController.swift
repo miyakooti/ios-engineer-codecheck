@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var issuesLabel: UILabel!
     
     var searchVCIndex: Int?
-    var repositories: [[String: Any]] = []
+    var repository: [String: Any]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,8 @@ class DetailViewController: UIViewController {
     }
     
     func prepareViews() {
-        guard let index = searchVCIndex else { return }
+        guard let repository = repository else { return }
         
-        let repository = repositories[index]
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         stargazersLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
         wachersLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
@@ -40,13 +39,11 @@ class DetailViewController: UIViewController {
     }
     
     func getImage() {
-        guard let index = searchVCIndex else { return }
-
-        let repository = repositories[index]
+        guard let repository = repository,
+              let owner = repository["owner"] as? [String: Any],
+              let imageURL = owner["avatar_url"] as? String else { return }
         
         titleLabel.text = repository["full_name"] as? String
-        guard let owner = repository["owner"] as? [String: Any],
-              let imageURL = owner["avatar_url"] as? String else { return }
         
         URLSession.shared.dataTask(with: URL(string: imageURL)!) { [weak self] (data, res, err) in
             let image = UIImage(data: data!)!
