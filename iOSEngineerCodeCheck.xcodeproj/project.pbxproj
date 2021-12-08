@@ -107,7 +107,7 @@
 			children = (
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
-				D13412BA2760990F00249E4D /* Search */,
+				D13412BA2760990F00249E4D /* SearchRepository */,
 				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
 				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
@@ -159,14 +159,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		D13412BA2760990F00249E4D /* Search */ = {
+		D13412BA2760990F00249E4D /* SearchRepository */ = {
 			isa = PBXGroup;
 			children = (
 				D13412B9276098E700249E4D /* Presenter */,
 				D13412B8276098E000249E4D /* View */,
 				D13412B7276098DA00249E4D /* Model */,
 			);
-			path = Search;
+			path = SearchRepository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

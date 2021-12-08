@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  SearchRepositoryViewcontroller.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by 史 翔新 on 2020/04/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SearchViewController: UIViewController {
+final class SearchRepositoryViewcontroller: UIViewController {
     
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
@@ -28,7 +28,7 @@ final class SearchViewController: UIViewController {
         let presenter = SearchRepositoryPresenter(view: self, model: model)
         self.inject(presenter: presenter)
         
-        searchBar.text = "ios-engineer-codecheck"
+        searchBar.text = "リポジトリを検索できるよーーー"
         searchBar.delegate = self
         tableView.delegate = self
     }
@@ -44,10 +44,9 @@ final class SearchViewController: UIViewController {
 }
 
 
-extension SearchViewController: UITableViewDelegate {
+extension SearchRepositoryViewcontroller: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard presenter != nil else { return 0 }
         return presenter.repositories.count
     }
     
@@ -59,7 +58,7 @@ extension SearchViewController: UITableViewDelegate {
     
 }
 
-extension SearchViewController: UITableViewDataSource {
+extension SearchRepositoryViewcontroller: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
@@ -73,7 +72,7 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 
-extension SearchViewController: UISearchBarDelegate {
+extension SearchRepositoryViewcontroller: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.text = ""
@@ -92,10 +91,9 @@ extension SearchViewController: UISearchBarDelegate {
     
 }
 
-extension SearchViewController: SearchRepositoryPresenterOutput {
+extension SearchRepositoryViewcontroller: SearchRepositoryPresenterOutput {
     func updateTableView(repositories: [[String : Any]]) {
         tableView.reloadData()
     }
-    
     
 }
