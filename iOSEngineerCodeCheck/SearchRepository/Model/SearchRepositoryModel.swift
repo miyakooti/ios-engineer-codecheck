@@ -17,17 +17,8 @@ final class SearchRepositoryModel: SearchRepositoryModelInput {
     private var task: URLSessionTask?
     
     func fetchRepositories(text: String, completion: @escaping (Result<[[String: Any]]>) -> ()) {
-        
         let urlString = "https://api.github.com/search/repositories?q=\(text)"
-
-        
         guard let url = URL(string: urlString) else { return }
-
-        
-        URLSession.shared.dataTask(with: url) { [weak self] (data, res, err) in
-            
-            
-        }
         
         task = URLSession.shared.dataTask(with: url) { [weak self] (data, res, err) in
             guard let data = data else { return }
@@ -44,7 +35,6 @@ final class SearchRepositoryModel: SearchRepositoryModelInput {
         }
         task?.resume()
     }
-    
     
 }
 

@@ -109,6 +109,7 @@
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
 				D13412BA2760990F00249E4D /* SearchRepository */,
 				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
+				D175324E2760B38B00401045 /* Utilities */,
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
 				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
 				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
@@ -162,11 +163,18 @@
 		D13412BA2760990F00249E4D /* SearchRepository */ = {
 			isa = PBXGroup;
 			children = (
-				D13412B9276098E700249E4D /* Presenter */,
 				D13412B8276098E000249E4D /* View */,
+				D13412B9276098E700249E4D /* Presenter */,
 				D13412B7276098DA00249E4D /* Model */,
 			);
 			path = SearchRepository;
+			sourceTree = "<group>";
+		};
+		D175324E2760B38B00401045 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -19,10 +19,7 @@ protocol SearchRepositoryPresenterInput {
 
 final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
     private(set) var repositories: [[String : Any]] = []
-    
-    var urlString = ""
-    private var index: Int?
-    
+        
     private var view: SearchRepositoryPresenterOutput!
     private var model: SearchRepositoryModelInput
     
@@ -47,9 +44,5 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
         }
     }
         
-        
-
-
-    
     
 }
