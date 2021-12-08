@@ -18,7 +18,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!
     
-    var searchVCIndex: Int?
     var repository: [String: Any]?
 
     override func viewDidLoad() {
