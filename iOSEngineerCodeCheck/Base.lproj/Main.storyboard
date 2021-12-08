@@ -11,12 +11,12 @@
         <!--Root View Controller-->
         <scene sceneID="0Yw-Vc-k2Q">
             <objects>
-                <tableViewController storyboardIdentifier="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MOh-CZ-3ki" customClass="SearchRepositoryViewcontroller" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MOh-CZ-3ki" customClass="SearchRepositoryViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Fpt-Ev-QNW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="6rq-CD-Hob">
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" id="6rq-CD-Hob">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -66,7 +66,7 @@
         <!--Detail View Controller-->
         <scene sceneID="JOC-74-7VT">
             <objects>
-                <viewController id="AHY-RL-7mG" customClass="DetailViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AHY-RL-7mG" customClass="DetailViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4gp-25-lRZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,6 +79,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4q1-pG-WSB">
                                 <rect key="frame" x="184" y="547.5" width="46.5" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="DetailViewController_title"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" systemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -123,6 +124,13 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8Q-fp-igB">
+                                <rect key="frame" x="192" y="433" width="30" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="aaa"/>
+                                <state key="normal" title="aaa">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="srK-fe-i1b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -131,8 +139,10 @@
                             <constraint firstItem="4q1-pG-WSB" firstAttribute="top" secondItem="Iim-eb-8Ad" secondAttribute="bottom" constant="28" id="G2L-KM-330"/>
                             <constraint firstItem="4q1-pG-WSB" firstAttribute="centerX" secondItem="Iim-eb-8Ad" secondAttribute="centerX" id="Ght-Nb-HEu"/>
                             <constraint firstItem="srK-fe-i1b" firstAttribute="trailing" secondItem="Iim-eb-8Ad" secondAttribute="trailing" constant="20" id="IgU-EN-fM3"/>
+                            <constraint firstItem="K8Q-fp-igB" firstAttribute="centerX" secondItem="4gp-25-lRZ" secondAttribute="centerX" id="Yhx-KC-gXi"/>
                             <constraint firstItem="oOe-O2-3RS" firstAttribute="width" secondItem="Iim-eb-8Ad" secondAttribute="width" id="dPu-j0-Myp"/>
                             <constraint firstItem="oOe-O2-3RS" firstAttribute="centerX" secondItem="4q1-pG-WSB" secondAttribute="centerX" id="kVV-YK-ePr"/>
+                            <constraint firstItem="K8Q-fp-igB" firstAttribute="centerY" secondItem="4gp-25-lRZ" secondAttribute="centerY" id="r8Y-82-3Je"/>
                             <constraint firstItem="Iim-eb-8Ad" firstAttribute="centerY" secondItem="srK-fe-i1b" secondAttribute="centerY" multiplier="0.7" id="ruB-l0-4VM"/>
                             <constraint firstItem="oOe-O2-3RS" firstAttribute="top" secondItem="4q1-pG-WSB" secondAttribute="bottom" constant="22" id="zdI-FJ-GIP"/>
                         </constraints>
@@ -157,6 +167,7 @@
             <objects>
                 <navigationController id="wFt-RI-uk4" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iRk-f0-Qkc">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
