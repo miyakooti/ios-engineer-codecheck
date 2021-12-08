@@ -8,15 +8,15 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+final class SearchViewController: UITableViewController {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchBar: UISearchBar!
     
-    var repositories: [[String: Any]] = []
-    var task: URLSessionTask?
-    var searchText = ""
-    var urlString = ""
-    var index: Int?
+    private var repositories: [[String: Any]] = []
+    private var task: URLSessionTask?
+    private var searchText = ""
+    private var urlString = ""
+    private var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
