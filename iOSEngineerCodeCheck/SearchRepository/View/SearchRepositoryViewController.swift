@@ -8,9 +8,13 @@
 
 import UIKit
 
-final class SearchRepositoryViewcontroller: UIViewController {
+final class SearchRepositoryViewController: UIViewController {
     
-    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.accessibilityIdentifier = "searchBar"
+        }
+    }
     @IBOutlet var tableView: UITableView!
     
     // passiveviewなのでinputのみ
@@ -44,7 +48,7 @@ final class SearchRepositoryViewcontroller: UIViewController {
 }
 
 
-extension SearchRepositoryViewcontroller: UITableViewDelegate {
+extension SearchRepositoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.repositories.count
@@ -59,7 +63,7 @@ extension SearchRepositoryViewcontroller: UITableViewDelegate {
     
 }
 
-extension SearchRepositoryViewcontroller: UITableViewDataSource {
+extension SearchRepositoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
@@ -73,7 +77,7 @@ extension SearchRepositoryViewcontroller: UITableViewDataSource {
 }
 
 
-extension SearchRepositoryViewcontroller: UISearchBarDelegate {
+extension SearchRepositoryViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.text = ""
@@ -92,7 +96,7 @@ extension SearchRepositoryViewcontroller: UISearchBarDelegate {
     
 }
 
-extension SearchRepositoryViewcontroller: SearchRepositoryPresenterOutput {
+extension SearchRepositoryViewController: SearchRepositoryPresenterOutput {
     func updateTableView(repositories: [[String : Any]]) {
         tableView.reloadData()
     }

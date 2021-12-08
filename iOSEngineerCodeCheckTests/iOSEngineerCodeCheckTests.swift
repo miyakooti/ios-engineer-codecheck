@@ -7,12 +7,15 @@
 //
 
 import XCTest
-@testable import iOSEngineerCodeCheck
+//@testable import iOSEngineerCodeCheck
 
 class iOSEngineerCodeCheckTests: XCTestCase {
 
     override func setUpWithError() throws {
+        super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        continueAfterFailure = false
+
     }
 
     override func tearDownWithError() throws {
@@ -22,6 +25,10 @@ class iOSEngineerCodeCheckTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let a = 1
+        let b = 2
+        XCTAssertEqual(a + b, 3)
     }
 
     func testPerformanceExample() throws {
@@ -30,5 +37,6 @@ class iOSEngineerCodeCheckTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
 
 }

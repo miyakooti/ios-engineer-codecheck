@@ -11,7 +11,7 @@ import UIKit
 final class DetailViewController: UIViewController {
     
     @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var stargazersLabel: UILabel!
     @IBOutlet private weak var wachersLabel: UILabel!
