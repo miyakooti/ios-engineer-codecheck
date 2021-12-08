@@ -8,17 +8,16 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var languageLabel: UILabel!
-    @IBOutlet weak var stargazersLabel: UILabel!
-    @IBOutlet weak var wachersLabel: UILabel!
-    @IBOutlet weak var forksLabel: UILabel!
-    @IBOutlet weak var issuesLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var languageLabel: UILabel!
+    @IBOutlet private weak var stargazersLabel: UILabel!
+    @IBOutlet private weak var wachersLabel: UILabel!
+    @IBOutlet private weak var forksLabel: UILabel!
+    @IBOutlet private weak var issuesLabel: UILabel!
     
-    var searchVCIndex: Int?
     var repository: [String: Any]?
 
     override func viewDidLoad() {
@@ -27,7 +26,7 @@ class DetailViewController: UIViewController {
     
     }
     
-    func prepareViews() {
+    private func prepareViews() {
         guard let repository = repository else { return }
         
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
@@ -38,7 +37,7 @@ class DetailViewController: UIViewController {
         getImage()
     }
     
-    func getImage() {
+    private func getImage() {
         guard let repository = repository,
               let owner = repository["owner"] as? [String: Any],
               let imageURL = owner["avatar_url"] as? String else { return }
@@ -51,7 +50,6 @@ class DetailViewController: UIViewController {
                 self?.imageView.image = image
             }
         }.resume()
-        
     }
     
 }
