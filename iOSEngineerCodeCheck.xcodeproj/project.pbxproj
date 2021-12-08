@@ -103,7 +103,7 @@
 			children = (
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
-				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
+				D13412BA2760990F00249E4D /* Search */,
 				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
 				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
@@ -129,6 +129,38 @@
 				BFD94602244DC5EC0012785A /* Info.plist */,
 			);
 			path = iOSEngineerCodeCheckUITests;
+			sourceTree = "<group>";
+		};
+		D13412B7276098DA00249E4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D13412B8276098E000249E4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D13412B9276098E700249E4D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		D13412BA2760990F00249E4D /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D13412B9276098E700249E4D /* Presenter */,
+				D13412B8276098E000249E4D /* View */,
+				D13412B7276098DA00249E4D /* Model */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

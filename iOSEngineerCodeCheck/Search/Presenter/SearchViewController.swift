@@ -8,9 +8,10 @@
 
 import UIKit
 
-final class SearchViewController: UITableViewController {
+final class SearchViewController: UIViewController {
     
     @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet var tableView: UITableView!
     
     private var repositories: [[String: Any]] = []
     private var task: URLSessionTask?
@@ -22,6 +23,7 @@ final class SearchViewController: UITableViewController {
         super.viewDidLoad()
         searchBar.text = "ios-engineer-codecheck"
         searchBar.delegate = self
+        tableView.delegate = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -32,11 +34,16 @@ final class SearchViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+}
+
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositories.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let repository = repositories[indexPath.row]
         cell.textLabel?.text = repository["full_name"] as? String ?? ""
@@ -45,13 +52,12 @@ final class SearchViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
     }
     
 }
-
 
 
 extension SearchViewController: UISearchBarDelegate {
