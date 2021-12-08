@@ -20,7 +20,6 @@ final class SearchRepositoryViewcontroller: UIViewController {
         self.presenter = presenter
     }
     
-    // このへんもおそらくpresenterの処理だからのちのち修正
     private var index: Int?
     
     override func viewDidLoad() {
@@ -53,6 +52,7 @@ extension SearchRepositoryViewcontroller: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // このへんもおそらくpresenterの処理だからのちのち修正
+        tableView.deselectRow(at: indexPath, animated: true)
         index = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
     }

@@ -19,37 +19,40 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var issuesLabel: UILabel!
     
     var repository: [String: Any]?
+    
+    private var presenter: DetailPresenterInput!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareViews()
-    
+        
+        let model = DetailModel()
+        let presenter = DetailPresenter(view: self, model: model)
+        self.inject(presenter: presenter)
+        
+        guard let repository = repository else { return }
+        presenter.handleInitialDataAndFetchImage(repository: repository)
+                
+    }
+    private func inject(presenter: DetailPresenterInput) {
+        self.presenter = presenter
     }
     
-    private func prepareViews() {
-        guard let repository = repository else { return }
-        
+}
+
+extension DetailViewController: DetailPresenterOutput {
+    
+    func handleIntialData(repository: [String : Any]) {
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         stargazersLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
         wachersLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
         forksLabel.text = "\(repository["forks_count"] as? Int ?? 0) forks"
         issuesLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
-        getImage()
+        titleLabel.text = repository["full_name"] as? String ?? ""
     }
-    
-    private func getImage() {
-        guard let repository = repository,
-              let owner = repository["owner"] as? [String: Any],
-              let imageURL = owner["avatar_url"] as? String else { return }
         
-        titleLabel.text = repository["full_name"] as? String
-        
-        URLSession.shared.dataTask(with: URL(string: imageURL)!) { [weak self] (data, res, err) in
-            let image = UIImage(data: data!)!
-            DispatchQueue.main.async {
-                self?.imageView.image = image
-            }
-        }.resume()
+    func updateImageView(image: UIImage) {
+        imageView.image = image
     }
     
 }
+

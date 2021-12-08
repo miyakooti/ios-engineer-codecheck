@@ -42,5 +42,5 @@ final class SearchRepositoryModel: SearchRepositoryModelInput {
 
 public enum Result<T> {
     case success(T)
-    case failure(Any)
+    case failure(Error?)
 }
