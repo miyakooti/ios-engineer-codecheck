@@ -17,23 +17,22 @@ final class SearchViewController: UIViewController {
     private var presenter: SearchRepositoryPresenterInput!
     
     func inject(presenter: SearchRepositoryPresenterInput) {
-        print("injectされたよ")
         self.presenter = presenter
-        print(presenter)
     }
     
     private var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let model = SearchRepositoryModel()
+        let presenter = SearchRepositoryPresenter(view: self, model: model)
+        self.inject(presenter: presenter)
         
         searchBar.text = "ios-engineer-codecheck"
         searchBar.delegate = self
         tableView.delegate = self
     }
     
-    
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail" {
             guard let detailVC = segue.destination as? DetailViewController,
