@@ -15,6 +15,7 @@ protocol SearchRepositoryPresenterOutput {
 protocol SearchRepositoryPresenterInput {
     var repositories: [[String : Any]] { get }
     func searchBarSearchButtonClicked(text: String)
+    func searchBarBecameEmpty()
 }
 
 final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
@@ -42,6 +43,11 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
             }
             
         }
+    }
+    
+    func searchBarBecameEmpty() {
+        repositories.removeAll()
+        view.updateTableView(repositories: repositories)
     }
         
     

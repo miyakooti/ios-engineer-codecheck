@@ -12,7 +12,8 @@ final class SearchRepositoryViewcontroller: UIViewController {
     
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
-    
+    var activityIndicator: UIActivityIndicatorView!
+
     // passiveviewなのでinputのみ
     private var presenter: SearchRepositoryPresenterInput!
     
@@ -29,6 +30,15 @@ final class SearchRepositoryViewcontroller: UIViewController {
         self.inject(presenter: presenter)
         
         searchBar.text = "リポジトリを検索できるよーーー"
+        
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .medium
+        self.view.addSubview(activityIndicator)
+
+        
         searchBar.delegate = self
         tableView.delegate = self
     }
@@ -81,9 +91,13 @@ extension SearchRepositoryViewcontroller: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            presenter.searchBarBecameEmpty()
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        activityIndicator.startAnimating()
         // searchBar、viewにしか置けないのでここで判定するしか無い、、
         guard searchBar.text != "", let text = searchBar.text else { return }
         presenter.searchBarSearchButtonClicked(text: text)
@@ -95,6 +109,7 @@ extension SearchRepositoryViewcontroller: UISearchBarDelegate {
 extension SearchRepositoryViewcontroller: SearchRepositoryPresenterOutput {
     func updateTableView(repositories: [[String : Any]]) {
         tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
     
 }
