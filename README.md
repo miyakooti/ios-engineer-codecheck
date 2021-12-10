@@ -12,10 +12,10 @@
 
 （PR作るの忘れました、、）
 
-## issue3
+## [issue3](https://github.com/miyakooti/ios-engineer-codecheck/pull/1)
 guardで強制アンラップを削除しました
 
-## issue4
+## [issue4](https://github.com/miyakooti/ios-engineer-codecheck/pull/2)
 [weak self]で循環参照を消去しました
 
 
@@ -27,10 +27,10 @@ guardで強制アンラップを削除しました
 ## issue5
 下位互換なので未着手
 
-## issue6
+## (issue6)[https://github.com/miyakooti/ios-engineer-codecheck/pull/3]
 使わない変数を渡さないなどしました（インターフェース分離）
 
-## issue7
+## (issue7)[https://github.com/miyakooti/ios-engineer-codecheck/pull/5]
 MVPを採用しましたが画面遷移がsegueのままにしてしまったので、それに伴ってdetailVCが少し汚くなってしまいました。handOverInitialDataのところが特に汚い。
 遷移するときViewにデータが渡ってしまいかつアクションもないため、初回のデータを利用していろいろ処理するために定義しました。
 Routerクラスなどを設けてやるべきでした。
@@ -40,7 +40,7 @@ PassiveViewを採用したつもりですが、ViewDidLoad()を起点とした�
 ## issue8
 未着手
 
-## issue9
+## [issue9](https://github.com/miyakooti/ios-engineer-codecheck/pull/7)
 検索待ってる間に何も表示されないのは顧客体験的に悪いなと感じたので、クルクルを追加しました
 検索結果が無かったときの対応なども追加したいです
 
