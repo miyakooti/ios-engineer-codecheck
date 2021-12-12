@@ -27,10 +27,10 @@ guardで強制アンラップを削除しました
 ## issue5
 下位互換なので未着手
 
-## (issue6)[https://github.com/miyakooti/ios-engineer-codecheck/pull/3]
+## [issue6](https://github.com/miyakooti/ios-engineer-codecheck/pull/3)
 使わない変数を渡さないなどしました（インターフェース分離）
 
-## (issue7)[https://github.com/miyakooti/ios-engineer-codecheck/pull/5]
+## [issue7](https://github.com/miyakooti/ios-engineer-codecheck/pull/5)
 MVPを採用しましたが画面遷移がsegueのままにしてしまったので、それに伴ってdetailVCが少し汚くなってしまいました。handOverInitialDataのところが特に汚い。
 遷移するときViewにデータが渡ってしまいかつアクションもないため、初回のデータを利用していろいろ処理するために定義しました。
 Routerクラスなどを設けてやるべきでした。
